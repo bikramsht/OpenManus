@@ -103,17 +103,19 @@ cp config/config.example.toml config/config.toml
 ```toml
 # Global LLM configuration
 [llm]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
+api_type = "ollama"
+model = "gemma3:1b"
+base_url = "http://localhost:11434/v1"
+api_key = "ollama"
 max_tokens = 4096
 temperature = 0.0
 
 # Optional configuration for specific LLM models
 [llm.vision]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
+api_type = "ollama"
+model = "llama3.2-vision"
+base_url = "http://localhost:11434/v1"
+api_key = "ollama"
 ```
 
 ## Quick Start
@@ -125,6 +127,18 @@ python main.py
 ```
 
 Then input your idea via terminal!
+
+To choose a different model at runtime:
+
+```bash
+python main.py --model gemma3:1b
+```
+
+Or select another model profile defined in `config.toml` (for example, `llm.vision`):
+
+```bash
+python main.py --llm-config vision
+```
 
 For MCP tool version, you can run:
 ```bash
